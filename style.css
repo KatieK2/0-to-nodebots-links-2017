@@ -53,6 +53,40 @@ header, footer {
   border-bottom: solid black thick;
 }
 
+header p, h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+header ul {
+  display:  flex;
+  list-style: none;
+  margin-top: 1rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
+}
+
+header ul li a {
+}
+
+header ul li svg {
+  max-width: 100%;
+  max-height: 3rem;
+  fill: #B22E2B;
+}
+
+header ul li label {
+  text-align: center;
+  display: block;
+  color: #B22E2B;
+  cursor: pointer;
+}
+
+header ul li:hover label, header ul li:hover a, header ul li:hover svg {
+  color: black;
+  fill: black;
+}
+
 main {
   display: flex;
 }
@@ -114,9 +148,17 @@ nav li {
   margin: 0.5rem;
   padding: 0.5rem;
 }
+
 nav a {
   color: white;
 }
+
+svg.hide {
+  height: 3rem;
+  width: 3rem;
+  display: none;
+}
+
 .note {
   float: right;
   width: 45%;
