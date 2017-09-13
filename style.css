@@ -125,6 +125,17 @@ p {
 a {
   color: #B22E2B;
 }
+
+code.cli, pre.cli {
+  color: white;
+  background-color: #515151;
+  padding: .15rem .4rem;
+}
+
+code.cli::before, pre.cli::before {
+  content: '# ';
+  }
+
 dt {
   border-top: dashed white thin;
   padding-top: .35em;
