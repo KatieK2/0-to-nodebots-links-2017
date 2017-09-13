@@ -94,9 +94,10 @@
     <!-- <p>Watch the video: <a href="http://www.youtube.com/watch?v=lKogyZZJt_0">0 to Nodebots in 45 Minutes</a> from Nodevember (November, 2014 in Nashville, TN)</p> -->
 
     <h2 id="installs">Installs</h2>
-    <p class="note"><strong>OSX</strong>: When installing, do you get an error <strong>[app] can't be opened because it is from an unidentified developer</strong>? Just right click or control+click on the package or app and then click "Open" to get things installed.</p>
     <ul>
-      <li>Git! <a href="https://help.github.com/articles/set-up-git#platform-all">https://help.github.com/articles/set-up-git#platform-all</a></li>
+      <li>Git! <a href="https://help.github.com/articles/set-up-git#platform-all">https://help.github.com/articles/set-up-git#platform-all</a>
+        <p class="note"><strong>OSX</strong>: When installing, do you get an error <strong>[app] can't be opened because it is from an unidentified developer</strong>? Just right click or control+click on the package or app and then click "Open" to get things installed.</p>
+      </li>
       <li>Node! <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a>
       </li>
       <li>npm packages:
@@ -117,30 +118,93 @@
       </li>
     </ul>
 
-    <h2 id="demos">Demo Code</h2>
-    <ul>
-      <li>Blinky:
-        <ul>
-          <li>Code: <a href="code/blinky.js">code/binky.js</a></li>
-          <li>Diagram: <a href="diagram-blinky.png">diagram-blinky.png</a></li>
-          <li>
-            REPL: <code>led.stop();</code><br />
-            REPL: <code>led.strobe(3000);</code><br />
-            REPL: <code>led.off();</code><br />
-            REPL: <code>led.on();</code><br />
-          </li>
-        </ul>
-      </li>
-      <li>Motor:
-        <ul>
-          <li>Code: <a href="code/motor.js">code/motor.js</a></li>
-          <li>Diagram: <a href="diagram-motor.png">diagram-motor.png</a></li>
-          <li>
-            REPL: <code>myMotor.start(128);</code>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <h2 id="demos">Demos</h2>
+
+    <h3>Blinky</h3>
+
+    <p>Diagram: <a href="diagram-blinky.png">diagram-blinky.png</a></p>
+
+    <h4>blinky.js:</h4>
+    <pre>var five = require("johnny-five");
+var board = new five.Board();
+board.on("ready", function() {
+  var led = new five.Led(11)
+  led.strobe(500);
+  this.repl.inject({
+    led: led
+  });
+});</pre>
+
+    <h4>REPL:</h4>
+<!--     <pre class="cli">led.stop();</pre>
+    <pre class="cli">led.strobe(3000);</pre>
+    <pre class="cli">led.off();</pre>
+    <pre class="cli">led.on();</pre> -->
+
+    <h3>Flashlight</h3>
+
+    <p>Diagram: <a href="diagram-flashlight.png">diagram-flashlight.png</a></p>
+
+    <h4>flashlight.js</h4>
+    <pre>var five = require("johnny-five"), board, photoresistor;
+var board = new five.Board();
+
+board.on("ready", function(){
+
+  var led1 = new five.Led(10);
+
+  photoresistor = new five.Sensor({
+    pin: "A2",
+    freq: 500 // Data is polled every half second
+  });
+
+  maxLight = 800
+  minLight = 250
+  lightRange = (maxLight - minLight)
+  ledRange = 255
+
+  photoresistor.on("data", function() {
+
+    currentLight = this.value;
+    ledValue = (((currentLight - minLight) * ledRange) / lightRange);
+    ledValue = Math.max(ledValue, 0);
+    ledValue = Math.min(ledValue, 255);
+
+    console.log("Photosensor: " + this.value)"     ledValue: " + ledValue); 
+    led1.fade(ledValue, 500);
+
+  });
+
+});</pre>
+
+    <h3>Tessel 2 Blinky</h3>
+
+    <pre class="cli">npm install t2-cli tessel-io</pre>
+
+    <h4>blinky.js</h4>
+
+    <pre>var Tessel = require("tessel-io");
+var five = require("johnny-five");
+var board = new five.Board({
+  io: new Tessel()
+});
+board.on("ready", () => {  
+  var led, led2;
+  led = new five.Led("L2");
+  led.blink(500);
+  led2 = new five.Led("L3");
+  led2.blink(500);
+});</pre>
+
+    <pre class="cli">t2 push blinky.js</pre>
+
+<!--     <h3></h3>
+
+    <p>Diagram: <a href="diagram-.png">diagram-.png</a></p>
+
+    <h4></h4>
+    <pre>
+</pre> -->
 
     <h2 id="buying">Buying</h2>
     <ul>
