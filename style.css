@@ -22,14 +22,6 @@ p, ul, ol, dl, pre, code, blockquote { font-size: 1em; }
 li { margin-bottom: .75%; }
 small, aside { font-size: 0.75em; }
 
-/*
-#F7DE1E: Yellow      $color-1: #F7DE1E;
-#2C2E2B: Black       $color-2: #2C2E2B;
-#B22E2B: Red         $color-3: adjust-color($color-2, $red: 134);;
-#4D5BC8: Blue        $color-4: desaturate(complement($color-1), 40%);
-#B9A616: Dk Yellow   $color-5: mix($color-1, black, 75%);
-*/
-
 body {
   color: #2C2E2B;
   background-color: #FCF4B2;
@@ -110,6 +102,24 @@ nav {
   align-items: stretch;
 }
 
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  float: left;
+  background-color: #4D5BC8;
+  border: 1px solid #000;
+  margin: 0.5rem;
+}
+
+nav a {
+  color: white;
+  padding: .5rem;
+  display: block;
+}
+
 ul {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -154,26 +164,13 @@ dt {
   margin-left: 1rem;
   margin-right: 1rem;
 }
+
 dt:first-child {
   border-top: none;
 }
+
 dd {
   margin-bottom: 0.25em;
-}
-nav ul {
-  margin: 0;
-  padding: 0;
-}
-nav li {
-  float: left;
-  background-color: #4D5BC8;
-  border: 1px solid #000;
-  margin: 0.5rem;
-  padding: 0.5rem;
-}
-
-nav a {
-  color: white;
 }
 
 svg.hide {
