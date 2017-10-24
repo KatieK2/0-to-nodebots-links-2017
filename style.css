@@ -54,11 +54,9 @@ header p, h1 {
 
 header ul {
   display:  flex;
-  list-style: none;
   margin-top: 1rem;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 80%;
+  list-style: none;
+  padding-left: 0;
 }
 
 header ul li svg {
@@ -74,7 +72,8 @@ header ul li label {
   cursor: pointer;
 }
 
-header ul li:hover label, header ul li:hover a, header ul li:hover svg {
+header ul li:hover label, header ul li:hover a, header ul li:hover svg, 
+header ul li:focus label, header ul li:focus a, header ul li:focus svg {
   color: black;
   fill: black;
 }
